@@ -3,16 +3,27 @@ class cvmfs_simple::config (
   $cvmfs_quota_limit = '20000',
   $cvmfs_http_proxy  = 'http://mysquidserver.example.com',
   $cvmfs_cache_base  = '/var/cache/cvmfs2',
+  $cms_local_site    = 'site_name',
   ){
   
   
- file {'/etc/fuse.conf':
+ file {'/etc/cvmfs/config.d/cms.cern.ch.local':
+    ensure => present,
+    content => "export CMS_LOCAL_SITE=/cvmfs/cms.cern.ch/SITECONF/${cms_local_site}",
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
+    require => Package['cvmfs-config-default'],
+    } 
+ 
+  file {'/etc/fuse.conf':
     ensure => present,
     content => "#Installed with puppet cvmfs::config\nuser_allow_other\n",
     owner => 'root',
     group => 'root',
     mode => '0644',
-    } 
+    }
+
 
  augeas{'cvmfs_automaster':
     context => '/files/etc/auto.master/',

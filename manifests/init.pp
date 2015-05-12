@@ -17,6 +17,7 @@
 #     cvmfs_simple::config::cvmfs_quota_limit: '20000'
 #     cvmfs_simple::config::cvmfs_http_proxy: 'http://mysquidserver.example.com'
 #     cvmfs_simple::config::cvmfs_cache_base: '/var/cache/cvmfs2'
+#     cvmfs_simple::config::cms_local_site: 'cms_local_site'
 #     cvmfs_simple::extra::repo: ['gridpp']
 #
 # 
